@@ -130,6 +130,7 @@ STATIC_DIR,
 
 
 LOGIN_REDIRECT_URL='/afterlogin'
+LOGIN_URL = '/adminlogin/'
 
 #for contact us give your gmail id and password
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
@@ -144,3 +145,4 @@ EMAIL_HOST_PASSWORD = 'xyz' # host email password required
 # otherwise you will get SMTPAuthenticationError at /contactus
 # this process is required because google blocks apps authentication by default
 EMAIL_RECEIVING_USER = ['to@gmail.com'] # email on which you will receive messages sent from website
+

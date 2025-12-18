@@ -1,48 +1,435 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en" dir="ltr">
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>LazyCoder || sumit</title>
-  <style media="screen">
-    .jumbotron {
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-
-    .jumbotron h1 {
-      text-align: center;
-    }
-
-    .alert {
-      margin: 0px;
-    }
-  </style>
-
-  <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .site-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .site-header::before {
+            content: "✧";
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float 20s infinite linear;
+        }
+        
+        .site-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .site-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        /* Mission/Vision Cards */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #3498db;
+            display: block;
+        }
+        
+        .value-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        /* Team Section */
+        .team-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        /* Stats */
+        .stats-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #2c3e50;
+            color: white;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Final Message */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+        
+        .message-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .message-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #2c3e50;
+            color: white;
+            margin-top: 4rem;
+        }
+        
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header -->
+    <header class="site-header">
+        <h1 class="site-title">À Propos de Nous</h1>
+        <p class="site-subtitle">Une institution dédiée à l'excellence éducative et au développement personnel de chaque individu.</p>
+    </header>
 
-  {% include "school/navbar.html" %}
-  <br><br>
-  <center>
-    <h3 class='alert alert-success' style="margin-bottom:0px;">About Us !</h3>
-  </center>
-  <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;">
-    <h1 class="display-4">Hello</h1>
-    <p class="lead">A service dedicated to Admin, Student and Teacher. We provide online resources, professional support
-      and guidance to all our students,teacher whenever, and from wherever they have chosen to study.</p>
-    <hr class="my-4">
-    <p>Explore our Website.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
-    </p>
-  </div>
+    <!-- Notre Histoire -->
+    <section class="content-section">
+        <h2 class="section-title">Notre Histoire</h2>
+        <div class="value-card fade-in">
+            <p style="font-size: 1.2rem; line-height: 1.9;">
+                Fondée avec une vision claire et une passion pour l'éducation, notre institution s'est développée au fil des années pour devenir un espace d'apprentissage unique. Chaque chapitre de notre histoire est marqué par l'engagement envers nos valeurs fondamentales et la recherche constante de l'excellence.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.9; margin-top: 1.5rem;">
+                Notre parcours, commencé modestement, s'est transformé en une aventure collective où chaque étudiant, enseignant et membre du personnel contribue à écrire une nouvelle page de notre développement.
+            </p>
+        </div>
+    </section>
 
-  {% include "school/footer.html" %}
+    <!-- Valeurs -->
+    <section class="content-section">
+        <h2 class="section-title">Nos Valeurs Fondamentales</h2>
+        <div class="values-grid">
+            <div class="value-card fade-in">
+                <span class="value-icon">✓</span>
+                <h3 class="value-title">Excellence Académique</h3>
+                <p>Nous nous engageons à fournir une éducation de la plus haute qualité, en encourageant l'excellence dans chaque domaine d'étude et en favorisant un environnement propice à l'apprentissage approfondi.</p>
+            </div>
+            
+            <div class="value-card fade-in">
+                <span class="value-icon">❤</span>
+                <h3 class="value-title">Intégrité Personnelle</h3>
+                <p>L'honnêteté, la responsabilité et le respect mutuel forment le fondement de toutes nos interactions et de notre communauté éducative.</p>
+            </div>
+            
+            <div class="value-card fade-in">
+                <span class="value-icon">🌱</span>
+                <h3 class="value-title">Développement Global</h3>
+                <p>Nous croyons en l'éducation de la personne dans son ensemble, favorisant à la fois le développement intellectuel, émotionnel et social de chaque individu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats-section">
+        <h2 class="section-title" style="color: white; border-bottom-color: #3498db;">Notre Impact en Chiffres</h2>
+        <div class="stats-grid">
+            <div class="stat-item fade-in">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Années d'Expérience</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Étudiants Formés</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Éducateurs Dédiés</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Engagement Qualitatif</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="team-section">
+        <h2 class="section-title">Notre Équipe Pédagogique</h2>
+        <div class="team-grid">
+            <div class="team-member fade-in">
+                <div class="member-avatar">AD</div>
+                <h3 class="member-name">Directrice Générale</h3>
+                <p class="member-role">Leadership & Vision</p>
+                <p>Plus de 20 ans d'expérience dans l'éducation innovante et la gestion pédagogique.</p>
+            </div>
+            
+            <div class="team-member fade-in">
+                <div class="member-avatar">CP</div>
+                <h3 class="member-name">Coordinateur Pédagogique</h3>
+                <p class="member-role">Innovation Éducative</p>
+                <p>Expert en méthodologies d'apprentissage modernes et technologies éducatives.</p>
+            </div>
+            
+            <div class="team-member fade-in">
+                <div class="member-avatar">EP</div>
+                <h3 class="member-name">Équipe Enseignante</h3>
+                <p class="member-role">Excellence Académique</p>
+                <p>Professionnels passionnés dédiés à la réussite de chaque étudiant.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Final -->
+    <section class="final-message">
+        <h2 class="message-title">Notre Engagement</h2>
+        <p class="message-text">
+            Chaque jour, nous nous levons avec la même conviction : l'éducation a le pouvoir de transformer des vies. 
+            Notre mission va au-delà de la transmission des connaissances ; il s'agit d'inspirer, de guider et 
+            d'accompagner chaque individu dans la découverte de son potentiel unique.
+        </p>
+        <p class="message-text" style="margin-top: 2rem; font-style: italic;">
+            Nous croyons en un avenir où chaque personne peut s'épanouir pleinement grâce à une éducation de qualité, 
+            adaptée et bienveillante.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p style="font-size: 1.3rem; margin-bottom: 1rem;">Merci de votre intérêt pour notre institution</p>
+        <p class="footer-text">Une institution au service de l'excellence éducative</p>
+        <p class="footer-text" style="margin-top: 2rem; font-size: 0.9rem;">© 2025 • Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Animation au défilement
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(el => fadeObserver.observe(el));
+            
+            // Effet de frappe au texte
+            const title = document.querySelector('.site-title');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Démarrer l'animation après un délai
+            setTimeout(typeWriter, 500);
+        });
+    </script>
 </body>
-
 </html>

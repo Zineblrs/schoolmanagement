@@ -167,9 +167,11 @@
     <div class="left_area">
       <h3>School Management</h3>
     </div>
-    <div class="right_area">
-      <a href="/logout" class="logout_btn">Logout</a>
-    </div>
+    <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+       <button type="submit">Logout</button>
+    </form>
+
   </header>
   <!--header area end-->
   <!--sidebar start-->

@@ -6,11 +6,18 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # retourne vers HOME
+
+
 
 def home_view(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('afterlogin')
     return render(request,'school/index.html')
+
 
 
 
@@ -109,9 +116,11 @@ def teacher_signup_view(request):
 def is_admin(user):
     return user.groups.filter(name='ADMIN').exists()
 def is_teacher(user):
-    return user.groups.filter(name='TEACHER').exists()
+    return user.groups.filter(name='TEACHER').exists() or user.groups.filter(name='ADMIN').exists()
 def is_student(user):
-    return user.groups.filter(name='STUDENT').exists()
+    return user.groups.filter(name='STUDENT').exists() or user.groups.filter(name='ADMIN').exists()
+
+
 
 
 def afterlogin_view(request):
@@ -133,7 +142,7 @@ def afterlogin_view(request):
 
 
 
-#for dashboard of adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
+#for dashboard of adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -178,7 +187,7 @@ def admin_dashboard_view(request):
 
 
 
-#for teacher sectionnnnnnnn by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
+#for teacher sectionnnnnnnn by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -290,7 +299,7 @@ def admin_view_teacher_salary_view(request):
 
 
 
-#for student by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn(by sumit)
+#for student by adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -626,7 +635,11 @@ def student_attendance_view(request):
 
 
 
+
+
+
 # for aboutus and contact ussssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss (by sumit)
+# ✅ NOUVELLE VERSION (PUBLIQUE, sans @login_required)
 def aboutus_view(request):
     return render(request,'school/aboutus.html')
 

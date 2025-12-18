@@ -1,63 +1,214 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
-
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <style type="text/css">
-    .bs-example {
-      margin: 0px;
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
     }
-
-    .navbar-brand {
-      font-size: 20px;
-      font-family: sans-serif;
-
+    
+    * {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .navbar-aya {
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(15, 52, 96, 0.95));
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-brand-aya {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4cc9f0, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .nav-link-aya {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      margin: 0 8px;
+      padding: 10px 20px !important;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-link-aya:hover {
+      color: white !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .nav-link-aya.active {
+      background: linear-gradient(135deg, var(--accent), #ff6b9d);
+      color: white !important;
+      box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+    }
+    
+    .nav-icon {
+      font-size: 1.1rem;
+    }
+    
+    .navbar-toggler-aya {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+    
+    .navbar-toggler-aya:focus {
+      box-shadow: 0 0 0 3px rgba(247, 37, 133, 0.2);
+    }
+    
+    .toggler-icon {
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .nav-badge {
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 5px;
+    }
+    
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        background: rgba(26, 26, 46, 0.98);
+        border-radius: 15px;
+        margin-top: 15px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      .nav-link-aya {
+        margin: 5px 0;
+        padding: 12px 20px !important;
+      }
     }
   </style>
 </head>
 
 <body>
-
-
-
-  <div class="bs-example">
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-      <a href="/" class="navbar-brand">School Management</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-aya fixed-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand navbar-brand-aya" href="/">
+        <i class="fas fa-graduation-cap"></i>
+        ÉCOLE D'Excellence
+      </a>
+      
+      <!-- Toggle Button -->
+      <button class="navbar-toggler navbar-toggler-aya" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAya">
+        <span class="toggler-icon">
+          <i class="fas fa-bars"></i>
+        </span>
       </button>
-
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <div class="navbar-nav">
-          <a href="/" class="nav-item nav-link active">Home</a>
-          <a href="/adminclick" class="nav-item nav-link">Admin</a>
-          <a href="/teacherclick" class="nav-item nav-link">Teacher</a>
-          <a href="/studentclick" class="nav-item nav-link">Student</a>
-
-
-        </div>
-
-        <div class="navbar-nav">
-          <a href="/aboutus" class="nav-item nav-link">About Us</a>
-          <a href="contactus" class="nav-item nav-link">Contact Us</a>
-        </div>
-
-
-
-
+      
+      <!-- Navigation -->
+      <div class="collapse navbar-collapse" id="navbarAya">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link-aya {% if request.path == '/' %}active{% endif %}" href="/">
+              <i class="fas fa-home nav-icon"></i>
+              Accueil
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link-aya {% if 'adminclick' in request.path %}active{% endif %}" href="/adminclick">
+              <i class="fas fa-user-shield nav-icon"></i>
+              Admin
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link-aya {% if 'teacherclick' in request.path %}active{% endif %}" href="/teacherclick">
+              <i class="fas fa-chalkboard-teacher nav-icon"></i>
+              Enseignant
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link-aya {% if 'studentclick' in request.path %}active{% endif %}" href="/studentclick">
+              <i class="fas fa-user-graduate nav-icon"></i>
+              Étudiant
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link-aya {% if 'aboutus' in request.path %}active{% endif %}" href="/aboutus">
+              <i class="fas fa-info-circle nav-icon"></i>
+              À Propos
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link-aya {% if 'contactus' in request.path %}active{% endif %}" href="/contactus">
+              <i class="fas fa-envelope nav-icon"></i>
+              Contact
+              <span class="nav-badge">Nouveau</span>
+            </a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
-
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-aya');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(15, 52, 96, 0.98))';
+        navbar.style.padding = '10px 0';
+      } else {
+        navbar.style.background = 'linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(15, 52, 96, 0.95))';
+        navbar.style.padding = '15px 0';
+      }
+    });
+    
+    // Active link highlight
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('.nav-link-aya');
+      
+      navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (currentPath === linkPath || 
+            (linkPath !== '/' && currentPath.includes(linkPath))) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>

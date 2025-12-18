@@ -1,36 +1,672 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
 
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <title>Feedback | School Management System</title>
 
-  <title>LazyCoder || sumit</title>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --success: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --form-bg: #ffffff;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e3e8f0 100%);
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Feedback Hero Section */
+    .feedback-hero {
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)),
+                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,197.3C672,192,768,160,864,149.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 80px 0 50px;
+      border-radius: 0 0 40px 40px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .feedback-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .feedback-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      font-size: 2.5rem;
+      color: white;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.5;
+    }
+
+    /* Form Container */
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      background: var(--form-bg);
+      border-radius: 25px;
+      padding: 50px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(67, 97, 238, 0.1);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .form-title {
+      text-align: center;
+      color: var(--primary);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .form-description {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* Form Styling */
+    .feedback-form {
+      margin-top: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group label i {
+      color: var(--accent);
+    }
+
+    .form-control, textarea.form-control {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+      color: #333;
+    }
+
+    .form-control:focus, textarea.form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+    }
+
+    textarea.form-control {
+      min-height: 180px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .form-control::placeholder, textarea.form-control::placeholder {
+      color: #999;
+      font-size: 0.95rem;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 40px auto 0;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(67, 97, 238, 0.4);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .submit-btn:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+
+    /* Importance Box */
+    .importance-box {
+      background: linear-gradient(135deg, rgba(247, 37, 133, 0.05), rgba(67, 97, 238, 0.05));
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .importance-box h5 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .importance-box p {
+      color: #666;
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Success Message Styling */
+    .alert-success {
+      background: linear-gradient(135deg, #d4edda, #c3e6cb);
+      border: none;
+      border-radius: 15px;
+      padding: 20px 25px;
+      border-left: 5px solid #28a745;
+      color: #155724;
+      font-weight: 500;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form Fields Styling */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      font-size: 1.05rem !important;
+      padding: 18px 20px !important;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .feedback-hero {
+        padding: 60px 20px 40px;
+        border-radius: 0 0 30px 30px;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .form-container {
+        padding: 30px 25px;
+        margin: 0 20px 60px;
+      }
+
+      .form-title {
+        font-size: 1.8rem;
+      }
+
+      .form-description {
+        font-size: 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px 30px;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .feedback-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+      }
+
+      .form-container {
+        padding: 25px 20px;
+      }
+    }
+
+    /* Additional Form Enhancements */
+    .form-field {
+      position: relative;
+    }
+
+    .form-field i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      opacity: 0.7;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      padding-left: 50px !important;
+    }
+
+    /* Character Counter */
+    .char-counter {
+      text-align: right;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .char-counter.warning {
+      color: #ff9800;
+    }
+
+    .char-counter.error {
+      color: #f44336;
+    }
+  </style>
 </head>
 
 <body>
 
   {% include "school/navbar.html" %}
-  <br><br>
-
-  <center>
-    <h3 class='alert alert-success'>Send Us Your Valuable Feedback !</h3>
-
-    <form method="POST">
-      <!-- Very Important csrf Token -->
-      {% csrf_token %}
-      <div class="form-group">
-        <p>
-        <h3>{{ form.as_p }}</h3>
+  
+  <!-- Feedback Hero Section -->
+  <section class="feedback-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="feedback-icon">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <h1 class="hero-title">Votre Avis Nous Importe</h1>
+        <p class="hero-subtitle">
+          Partagez vos suggestions, commentaires ou préoccupations. 
+          Chaque retour nous aide à améliorer votre expérience.
         </p>
-        <br>
-        <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>
       </div>
-    </form>
-  </center>
+    </div>
+  </section>
+
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <i class="fas fa-check-circle me-2"></i>
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Form Container -->
+    <div class="form-container">
+      <h2 class="form-title">Formulaire de Feedback</h2>
+      <p class="form-description">
+        Remplissez ce formulaire pour partager votre expérience avec nous. 
+        Nous lisons chaque message et nous efforçons d'apporter des améliorations continues.
+      </p>
+
+      <!-- Importance Box -->
+      <div class="importance-box">
+        <h5>
+          <i class="fas fa-lightbulb"></i>
+          Pourquoi votre feedback est important
+        </h5>
+        <p>
+          Votre avis nous aide à comprendre ce que nous faisons bien et ce que nous pouvons améliorer. 
+          Il nous guide dans nos décisions pour offrir une meilleure expérience à tous nos utilisateurs.
+        </p>
+      </div>
+
+      <!-- Feedback Form -->
+      <form method="POST" class="feedback-form" id="feedbackForm">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label for="id_name">
+            <i class="fas fa-user"></i>
+            Nom complet
+          </label>
+          <div class="form-field">
+            {{ form.name }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id_email">
+            <i class="fas fa-envelope"></i>
+            Adresse email
+          </label>
+          <div class="form-field">
+            {{ form.email }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id_subject">
+            <i class="fas fa-tag"></i>
+            Sujet
+          </label>
+          <div class="form-field">
+            {{ form.subject }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id_message">
+            <i class="fas fa-edit"></i>
+            Votre message
+          </label>
+          <div class="form-field">
+            {{ form.message }}
+          </div>
+          <div class="char-counter" id="charCounter">
+            <span id="charCount">0</span> / 1000 caractères
+          </div>
+        </div>
+
+        <!-- Additional Fields if any -->
+        {% for field in form %}
+          {% if field.name not in 'name,email,subject,message' %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane me-2"></i>
+          Envoyer le Message
+        </button>
+      </form>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="row mt-5">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <div class="icon-wrapper mb-3">
+              <i class="fas fa-clock fa-2x text-primary"></i>
+            </div>
+            <h5 class="card-title">Réponse Rapide</h5>
+            <p class="card-text">Nous nous engageons à répondre à tous les messages dans les 48 heures.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <div class="icon-wrapper mb-3">
+              <i class="fas fa-shield-alt fa-2x text-primary"></i>
+            </div>
+            <h5 class="card-title">Confidentialité</h5>
+            <p class="card-text">Vos informations personnelles sont protégées et ne seront jamais partagées.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <div class="icon-wrapper mb-3">
+              <i class="fas fa-heart fa-2x text-primary"></i>
+            </div>
+            <h5 class="card-title">Nous Écoutons</h5>
+            <p class="card-text">Chaque suggestion est étudiée sérieusement pour améliorer nos services.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% include "school/footer.html" %}
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add classes to form inputs
+      const inputs = document.querySelectorAll('input, textarea, select');
+      inputs.forEach(input => {
+        if (!input.classList.contains('form-control')) {
+          input.classList.add('form-control');
+        }
+      });
+
+      // Add placeholder text to form fields if they don't have any
+      const nameInput = document.querySelector('input[name="name"], #id_name');
+      if (nameInput && !nameInput.getAttribute('placeholder')) {
+        nameInput.setAttribute('placeholder', 'Votre nom complet');
+      }
+
+      const emailInput = document.querySelector('input[name="email"], #id_email');
+      if (emailInput && !emailInput.getAttribute('placeholder')) {
+        emailInput.setAttribute('placeholder', 'votre@email.com');
+      }
+
+      const subjectInput = document.querySelector('input[name="subject"], #id_subject');
+      if (subjectInput && !subjectInput.getAttribute('placeholder')) {
+        subjectInput.setAttribute('placeholder', 'Sujet de votre message');
+      }
+
+      const messageInput = document.querySelector('textarea[name="message"], #id_message');
+      if (messageInput && !messageInput.getAttribute('placeholder')) {
+        messageInput.setAttribute('placeholder', 'Décrivez votre expérience, vos suggestions ou vos préoccupations...');
+        messageInput.setAttribute('rows', '8');
+      }
+
+      // Character counter for message field
+      if (messageInput) {
+        const charCounter = document.getElementById('charCounter');
+        const charCount = document.getElementById('charCount');
+        
+        function updateCharCounter() {
+          const length = messageInput.value.length;
+          charCount.textContent = length;
+          
+          charCounter.className = 'char-counter';
+          if (length > 800 && length <= 1000) {
+            charCounter.classList.add('warning');
+          } else if (length > 1000) {
+            charCounter.classList.add('error');
+          }
+        }
+        
+        messageInput.addEventListener('input', updateCharCounter);
+        updateCharCounter(); // Initial count
+      }
+
+      // Form validation and feedback
+      const form = document.getElementById('feedbackForm');
+      form.addEventListener('submit', function(e) {
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            isValid = false;
+            field.style.borderColor = '#f44336';
+          } else {
+            field.style.borderColor = '#e0e0e0';
+          }
+        });
+        
+        if (!isValid) {
+          e.preventDefault();
+          alert('Veuillez remplir tous les champs obligatoires.');
+        }
+      });
+
+      // Add focus effects to form fields
+      const formControls = document.querySelectorAll('.form-control');
+      formControls.forEach(control => {
+        control.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        control.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

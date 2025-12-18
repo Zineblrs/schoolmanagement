@@ -1,85 +1,286 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /*---------------------------------------
-   Social section
------------------------------------------*/
     footer {
-      padding: 0px 0px 0px 0px;
-      background-color: black;
-      margin: 0px;
+      padding: 40px 0 20px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    .fa {
-      padding: 20px;
-      font-size: 23px;
-      width: 60px;
+    
+    .social-icons {
       text-align: center;
-      text-decoration: none;
-      margin: 5px 2px;
+      margin-bottom: 25px;
+    }
+    
+    .social-icon {
+      display: inline-block;
+      margin: 0 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon a {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-    }
-
-    .fa:hover {
-      opacity: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
       text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
-
-    .fa-facebook {
-      background: #3B5998;
-      color: white;
-      margin-top: 30px;
+    
+    .social-icon a:hover {
+      transform: translateY(-5px) scale(1.1);
+      border-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
-
-    .fa-whatsapp {
-      background: #25d366;
-      color: white;
+    
+    .fa-instagram:hover {
+      background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
+      border-color: #E1306C;
     }
-
-    .fa-twitter {
-      background: #55ACEE;
-      color: white;
+    
+    .fa-facebook-f:hover {
+      background: #1877F2;
+      border-color: #1877F2;
     }
-
-    .fa-instagram {
-      background: #125688;
-      color: white;
+    
+    .fa-whatsapp:hover {
+      background: #25D366;
+      border-color: #25D366;
     }
-
-    p {
+    
+    .fa-envelope:hover {
+      background: #EA4335;
+      border-color: #EA4335;
+    }
+    
+    .fa-phone:hover {
+      background: #34A853;
+      border-color: #34A853;
+    }
+    
+    .contact-info {
       text-align: center;
-
+      margin: 25px 0;
+      padding: 0 20px;
+    }
+    
+    .contact-item {
+      display: inline-block;
+      margin: 0 25px 15px;
+      font-size: 14px;
+    }
+    
+    .contact-item i {
+      margin-right: 10px;
+      color: #ff6b9d;
+      font-size: 16px;
+    }
+    
+    .contact-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-link:hover {
+      color: #ff6b9d;
+      text-decoration: underline;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 20px;
+    }
+    
+    .copyright p {
+      margin: 8px 0;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .copyright .highlight {
+      color: #ff6b9d;
+      font-weight: 600;
+    }
+    
+    .footer-logo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff6b9d, #4361ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+    
+    .logo-subtext {
+      font-size: 14px;
+      opacity: 0.7;
+      font-style: italic;
+    }
+    
+    .whatsapp-note {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+      .social-icon {
+        margin: 0 8px 15px;
+      }
+      
+      .social-icon a {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+      }
+      
+      .contact-item {
+        display: block;
+        margin: 10px 0;
+      }
+      
+      .logo-text {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 
-<footer>
-
-  <p>
-    <a href="https://facebook.com/sumit.luv/" class="fa fa-facebook"></a>
-    <a href="https://api.whatsapp.com/send?phone=919572181024&text=Hello%20Sumit.%0d%0aHow%20are%20you%20%3f%0d%0aI%20came%20from%20your%20website.&source=&data=#" class="fa fa-whatsapp"></a>
-    <a href="https://instagram.com/sumit.luv" class="fa fa-instagram"></a>
-    <a href="https://twitter.com/sumitkumar1503" class="fa fa-twitter"></a>
-  </p>
-
-  <br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-          <p>Made in India <br>
-            Copyright &copy; 2020 LazyCoder </p>
-        </div>
+<body>
+  <footer>
+    <div class="footer-logo">
+      <div class="logo-text">Ecole D'Excellence</div>
+      <div class="logo-subtext">Développement & Créativité</div>
+    </div>
+    
+    <div class="social-icons">
+      <!-- Instagram -->
+      <div class="social-icon">
+        <a href="https://www.instagram.com/aya.laghzali?igsh=MXVvaGJhOHA5a2JreQ%3D%3D&utm_source=qr" 
+           target="_blank" 
+           title="Suis-moi sur Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      
+      <!-- Facebook -->
+      <div class="social-icon">
+        <a href="https://www.facebook.com/share/1AVq8Xv2LC/?mibextid=wwXIfr" 
+           target="_blank" 
+           title="Retrouve-moi sur Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </div>
+      
+      <!-- WhatsApp -->
+      <div class="social-icon">
+        <a href="https://wa.me/212777015443" 
+           target="_blank" 
+           title="Contacte-moi sur WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      
+      <!-- Email -->
+      <div class="social-icon">
+        <a href="mailto:laghzaliaya752@gmail.com" 
+           title="Envoie-moi un email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      
+      <!-- Téléphone -->
+      <div class="social-icon">
+        <a href="tel:+212777015443" 
+           title="Appelle-moi">
+          <i class="fas fa-phone"></i>
+        </a>
       </div>
     </div>
-  </div>
-</footer>
-
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+212777015443" class="contact-link">+212 777-015443</a>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:laghzaliaya752@gmail.com" class="contact-link">laghzaliaya752@gmail.com</a>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Maroc</span>
+      </div>
+    </div>
+    
+    <p class="whatsapp-note">Disponible sur WhatsApp de 9h à 20h</p>
+    
+    <div class="copyright">
+      <p>© 2025 <span class="highlight">ENSA GIRLS</span> - Tous droits réservés</p>
+      <p>Développé avec passion et créativité</p>
+      <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">
+        <i class="fas fa-heart" style="color: #ff6b9d; margin: 0 5px;"></i>
+        Code fait avec amour
+        <i class="fas fa-heart" style="color: #ff6b9d; margin: 0 5px;"></i>
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    // Animation au survol améliorée
+    document.addEventListener('DOMContentLoaded', function() {
+      const socialIcons = document.querySelectorAll('.social-icon a');
+      
+      socialIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px) scale(1.1)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+      
+      // Affichage dynamique de l'heure locale
+      function updateTime() {
+        const now = new Date();
+        const options = { timeZone: 'Africa/Casablanca', hour: '2-digit', minute: '2-digit' };
+        const timeString = now.toLocaleTimeString('fr-FR', options);
+        
+        const timeElement = document.querySelector('.whatsapp-note');
+        if (timeElement) {
+          timeElement.innerHTML = `📱 Disponible sur WhatsApp (${timeString})`;
+        }
+      }
+      
+      // Mettre à jour l'heure toutes les minutes
+      updateTime();
+      setInterval(updateTime, 60000);
+    });
+  </script>
+</body>
 </html>

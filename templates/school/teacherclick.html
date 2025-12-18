@@ -1,19 +1,672 @@
 {% extends 'school/homebase.html' %}
+{% load static %}
+
 {% block content %}
-<br>
-<br>
-<div class="jumbotron" style="margin-bottom:0px;">
-  <h1 class="display-4">Hello, Teacher</h1>
-  <p class="lead">Welcome to School Management System.</p>
-  <hr class="my-4">
-  <p>You can access various features after Login.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="teachersignup" role="button">Apply For Job</a>
-    <a class="btn btn-primary btn-lg" href="teacherlogin" role="button">Login</a>
-  </p>
-</div>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --success: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --teacher-green: #2e7d32;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      min-height: 100vh;
+    }
+
+    /* Teacher Hero Section */
+    .teacher-hero {
+      background: linear-gradient(135deg, rgba(46, 125, 50, 0.95), rgba(67, 160, 71, 0.95)),
+                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,197.3C672,192,768,160,864,149.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0;
+      border-radius: 0 0 40px 40px;
+      position: relative;
+      overflow: hidden;
+      margin-top: -20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .teacher-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .teacher-icon {
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      font-size: 3.5rem;
+      color: white;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(45deg, #fff, #c8e6c9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .hero-divider {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--accent), var(--success));
+      margin: 30px auto;
+      border-radius: 2px;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn-teacher-action {
+      min-width: 180px;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-apply {
+      background: linear-gradient(135deg, var(--accent), #ff6b9d);
+      color: white;
+      border: none;
+    }
+
+    .btn-login {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-teacher-action:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-apply:hover {
+      color: white;
+      background: linear-gradient(135deg, #ff6b9d, var(--accent));
+    }
+
+    .btn-login:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--teacher-green);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--accent), var(--success));
+      border-radius: 2px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 35px 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--teacher-green), var(--success));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      border-color: var(--success);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--teacher-green), #4caf50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 1.8rem;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      color: var(--teacher-green);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .feature-description {
+      color: #666;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      background: linear-gradient(135deg, rgba(46, 125, 50, 0.05), rgba(67, 160, 71, 0.05));
+      border-radius: 25px;
+      padding: 50px;
+      margin: 60px 0;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      transform: translateX(10px);
+    }
+
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--teacher-green), var(--success));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-content h4 {
+      color: var(--teacher-green);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .benefit-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, var(--teacher-green), #4caf50);
+      color: white;
+      padding: 60px 0;
+      border-radius: 25px;
+      margin: 50px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Testimonial */
+    .testimonial {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 50px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-size: 6rem;
+      color: var(--teacher-green);
+      opacity: 0.1;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-content {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      color: var(--teacher-green);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .teacher-hero {
+        padding: 70px 20px;
+        border-radius: 0 0 30px 30px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .teacher-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.8rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-teacher-action {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-section {
+        padding: 30px 20px;
+      }
+
+      .benefit-item {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated-item {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .feature-card {
+      animation-delay: calc(var(--index) * 0.1s);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Teacher Hero Section -->
+  <section class="teacher-hero">
+    <div class="container">
+      <div class="hero-content text-center">
+        <!-- Teacher Icon -->
+        <div class="teacher-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <h1 class="hero-title animated-item" style="animation-delay: 0.1s;">
+          Bienvenue, Enseignant
+        </h1>
+        
+        <p class="hero-subtitle animated-item" style="animation-delay: 0.2s;">
+          Système de Gestion Scolaire - Espace Enseignant
+        </p>
+
+        <!-- Divider -->
+        <div class="hero-divider animated-item" style="animation-delay: 0.3s;"></div>
+
+        <!-- Description -->
+        <p class="hero-description animated-item" style="animation-delay: 0.4s;">
+          Rejoignez notre communauté éducative et donnez vie à vos cours. 
+          Gérez vos classes, évaluez vos étudiants et collaborez efficacement.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons animated-item" style="animation-delay: 0.5s;">
+          <a href="teachersignup" class="btn-teacher-action btn-apply">
+            <i class="fas fa-file-signature"></i>
+            Postuler
+          </a>
+          
+          <a href="teacherlogin" class="btn-teacher-action btn-login">
+            <i class="fas fa-sign-in-alt"></i>
+            Se Connecter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title animated-item">
+        Vos Outils Pédagogiques
+      </h2>
+
+      <div class="feature-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card animated-item" style="--index: 1;">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Gestion de Classe</h3>
+          <p class="feature-description">
+            Gérez vos étudiants, créez des groupes de travail et suivez les progrès individuels.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card animated-item" style="--index: 2;">
+          <div class="feature-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="feature-title">Évaluation</h3>
+          <p class="feature-description">
+            Créez des évaluations, attribuez des notes et fournissez des retours personnalisés.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card animated-item" style="--index: 3;">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3 class="feature-title">Présences</h3>
+          <p class="feature-description">
+            Marquez les présences, suivez les absences et générez des rapports automatiquement.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card animated-item" style="--index: 4;">
+          <div class="feature-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3 class="feature-title">Communication</h3>
+          <p class="feature-description">
+            Échangez avec les étudiants, les parents et les autres enseignants via la plateforme.
+          </p>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <div class="benefits-section animated-item" style="animation-delay: 0.6s;">
+        <h3 class="section-title">Pourquoi Nous Rejoindre ?</h3>
+        
+        <div class="benefit-item animated-item" style="animation-delay: 0.7s;">
+          <div class="benefit-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="benefit-content">
+            <h4>Environnement Innovant</h4>
+            <p>Travaillez avec des outils numériques modernes qui facilitent votre enseignement.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item animated-item" style="animation-delay: 0.8s;">
+          <div class="benefit-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <div class="benefit-content">
+            <h4>Support Continu</h4>
+            <p>Bénéficiez d'un accompagnement technique et pédagogique tout au long de l'année.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item animated-item" style="animation-delay: 0.9s;">
+          <div class="benefit-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="benefit-content">
+            <h4>Développement Professionnel</h4>
+            <p>Accédez à des formations et ressources pour perfectionner vos compétences.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats-section animated-item" style="animation-delay: 1s;">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Enseignants</span>
+            </div>
+          </div>
+          
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+          </div>
+          
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Support</span>
+            </div>
+          </div>
+          
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Sécurisé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="testimonial animated-item" style="animation-delay: 1.1s;">
+        <div class="testimonial-content">
+          "Cette plateforme a transformé ma façon d'enseigner. La gestion des classes est intuitive, 
+          et la communication avec les étudiants est devenue beaucoup plus efficace. 
+          Un outil indispensable pour tout enseignant moderne."
+        </div>
+        <div class="testimonial-author">
+          — Sarah Martin, Enseignante de Mathématiques
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedItems = document.querySelectorAll('.animated-item');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      animatedItems.forEach(item => {
+        item.style.animationPlayState = 'paused';
+        observer.observe(item);
+      });
+      
+      // Stats animation
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        const originalText = stat.textContent;
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            if (originalText.includes('+') || originalText.includes('%')) {
+              let current = 0;
+              const target = parseInt(originalText);
+              const increment = target / 50;
+              
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  current = target;
+                  clearInterval(timer);
+                }
+                stat.textContent = Math.floor(current) + originalText.replace(/[0-9]/g, '');
+              }, 30);
+            }
+            observer.unobserve(stat);
+          }
+        });
+        
+        observer.observe(stat);
+      });
+    });
+  </script>
+</body>
 {% endblock content %}
-<!--
-written By : sumit kumar
-facebook : fb.com/sumit.luv
--->
